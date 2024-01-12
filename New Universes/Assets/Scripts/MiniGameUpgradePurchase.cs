@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class MiniGameUpgradePurchase : MonoBehaviour
@@ -26,6 +27,32 @@ public class MiniGameUpgradePurchase : MonoBehaviour
         }
         else
             return (false);
+    }
+
+    private void UpdateButtonAviability()
+    {
+        double coins = GameMaster.coins;
+        if (improvedGunsCost > coins)
+        {
+            improvedGunsButton.GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            improvedGunsButton.GetComponent<Button>().interactable = true;
+        }
+        if (photonEnergizerCost > coins)
+        {
+            photonEnergizerButton.GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            photonEnergizerButton.GetComponent<Button>().interactable = true;
+        }
+    }
+
+    private void Update()
+    {
+        UpdateButtonAviability();
     }
 
     public void BuyImprovedGuns()

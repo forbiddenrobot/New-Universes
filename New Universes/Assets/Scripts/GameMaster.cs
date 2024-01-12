@@ -61,6 +61,10 @@ public class GameMaster : MonoBehaviour
         string myDoubleStr = PlayerPrefs.GetString("coins", "0");
         coins = double.Parse(myDoubleStr);
         coinsPerSec = PlayerPrefs.GetFloat("coinsPerSec", 1.0f);
+        if (coinsPerSec < 1)
+        {
+            coinsPerSec = 1;
+        }
         string BuyIceString = PlayerPrefs.GetString("canBuyIce", "true");
         BuyIce.canBuy = bool.Parse(BuyIceString);
         Projects.miningFaciltyCost = PlayerPrefs.GetFloat("MiningFacilityCost", 10.0f);

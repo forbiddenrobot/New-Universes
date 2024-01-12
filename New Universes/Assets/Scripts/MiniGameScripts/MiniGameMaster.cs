@@ -87,7 +87,10 @@ public class MiniGameMaster : MonoBehaviour
 
     void Spawn(int enemy, int spawnNum)
     {
-        Instantiate(Enemys[enemy], spawners[spawnNum - 1].transform.position, Quaternion.identity);
+        if (spawners[spawnNum - 1] != null)
+        {
+            Instantiate(Enemys[enemy], spawners[spawnNum - 1].transform.position, Quaternion.identity);
+        }
     }
 
     void RandSpawn()

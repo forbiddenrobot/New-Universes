@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Projects : MonoBehaviour
 {
@@ -50,12 +51,76 @@ public class Projects : MonoBehaviour
         return (cost);
     }
 
-    private void Start()
+    private void UpdateButtonUIAviability()
     {
-        UpdateButtonUI();
+        double coins = GameMaster.coins;
+        if(miningFaciltyCost > coins)
+        {
+            miningFacilityText.transform.parent.GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            miningFacilityText.transform.parent.GetComponent<Button>().interactable = true;
+        }
+
+        if (oilExportCost > coins)
+        {
+            oilExportText.transform.parent.GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            oilExportText.transform.parent.GetComponent<Button>().interactable = true;
+        }
+
+        if (cakeFactoryCost > coins)
+        {
+            cakeFactoryText.transform.parent.GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            cakeFactoryText.transform.parent.GetComponent<Button>().interactable = true;
+        }
+
+        if (computerChipCost > coins)
+        {
+            computerChipText.transform.parent.GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            computerChipText.transform.parent.GetComponent<Button>().interactable = true;
+        }
+
+
+        if (iceExcavatorCost > coins)
+        {
+            iceExcavatorText.transform.parent.GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            iceExcavatorText.transform.parent.GetComponent<Button>().interactable = true;
+        }
+
+        if (iceChunksExportationCost > coins)
+        {
+            iceChunksExportationText.transform.parent.GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            iceChunksExportationText.transform.parent.GetComponent<Button>().interactable = true;
+        }
     }
 
-    private void UpdateButtonUI()
+    private void Update()
+    {
+        UpdateButtonUIAviability();
+    }
+
+    private void Start()
+    {
+        UpdateButtonUIText();
+    }
+
+    private void UpdateButtonUIText()
     {
         miningFacilityText.text = "Mining Facility: +1 Coin Production " +
             "Cost: " + miningFaciltyCost.ToString("F0");
@@ -79,36 +144,36 @@ public class Projects : MonoBehaviour
     public void BuyMiningFacility()
     {
         miningFaciltyCost = BuyProject(miningFaciltyCost, miningFacilityMult, 1);
-        UpdateButtonUI();
+        UpdateButtonUIText();
     }
 
     public void BuyOilExport()
     {
         oilExportCost = BuyProject(oilExportCost, oilExportMult, 5);
-        UpdateButtonUI();
+        UpdateButtonUIText();
     }
 
     public void BuyCakeFactory()
     {
         cakeFactoryCost = BuyProject(cakeFactoryCost, cakeFactoryMult, 10);
-        UpdateButtonUI();
+        UpdateButtonUIText();
     }
 
     public void BuyComputerChipFactory()
     {
         computerChipCost = BuyProject(computerChipCost, computerChipMult, 100);
-        UpdateButtonUI();
+        UpdateButtonUIText();
     }
 
     public void BuyIceExcavator()
     {
         iceExcavatorCost = BuyProject(iceExcavatorCost, iceExcavatorMult, 1);
-        UpdateButtonUI();
+        UpdateButtonUIText();
     }
 
     public void BuyIcChunksExportation()
     {
         iceChunksExportationCost = BuyProject(iceChunksExportationCost, iceChunksExportationMult, 10);
-        UpdateButtonUI();
+        UpdateButtonUIText();
     }
 }
